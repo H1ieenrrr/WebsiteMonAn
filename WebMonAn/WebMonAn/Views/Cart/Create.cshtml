@@ -1,0 +1,68 @@
+﻿@model WebMonAn.Models.CartModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.cart != null)
+{
+    <div class="container mt-5 p-3 rounded cart">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row no-gutters">
+                <div class="col-md-8">
+                    <div class="product-details mr-2">
+                        <h6 class="mb-0">ĐƠN HÀNG</h6>
+                        @foreach (var item in ViewBag.cart)
+                        {
+                            <div class="d-flex justify-content-between align-items-center mt-3 p-2 items rounded">
+                                <div class="d-flex flex-row">
+                                    <img class="rounded" src="~/images/Food/@item.foodModel.Hinh" width="130">
+                                    <div class="ml-2"><span class="font-weight-bold d-block">@item.foodModel.TenMonAn</span><span class="spec">@item.foodModel.MoTa</span></div>
+                                </div>
+                                <div class="d-flex flex-row align-items-center">
+
+                                    <span class="d-block"><input value="@item.Soluong" disabled /></span>
+                                    <span class="d-block ml-5 font-weight-bold">@item.foodModel.GiaMonAn.ToString("#,##0")</span>
+                                    <a asp-controller="Cart" asp-action="Remove" asp-route-id="@item.foodModel.MonAnId">
+                                        <i class="mdi mdi-archive ml-3 text-white"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="payment-info">
+                        <div class="d-flex justify-content-between align-items-center"><span>THÔNG TIN ĐƠN HÀNG</span></div>
+                        <hr class="line">
+                        <div><label class="credit-card-label">ID</label><input asp-for="UserID" type="text" class="form-control credit-inputs" value="@ViewBag.NguoiDungId" readonly placeholder="" /></div>
+                        <div><label class="credit-card-label">Họ Và Tên</label><input type="text" class="form-control credit-inputs" value="@ViewBag.FullName" placeholder=""></div>
+                        <div><label class="credit-card-label">Địa Chỉ</label><input type="text" class="form-control credit-inputs" value="@ViewBag.DiaChi" placeholder=""></div>
+                        <div class="row">
+                            <div class="col-md-6"><label class="credit-card-label">Số Điện Thoại</label><input type="text" class="form-control credit-inputs" value="@ViewBag.DienThoai" placeholder=""></div>
+                            <div class="col-md-6"><label class="credit-card-label">Email</label><input type="text" class="form-control credit-inputs" value="@ViewBag.Email" placeholder=""></div>
+                        </div>
+                        <div><label class="credit-card-label">Ghi Chú</label><input asp-for="GhiChu" type="text" class="form-control credit-inputs" placeholder="" /></div>
+                        <hr class="line">
+                        <div class="d-flex justify-content-between information"><span>Đơn Hàng</span><span><input class="text-right mdi-cursor-pointer" asp-for="Tongtien" value="@ViewBag.total.ToString("#,##0")" readonly /> VNĐ</span><span asp-validation-for="Tongtien" class="text-danger"></span></div>
+                        <div class="d-flex justify-content-between information">
+                            <span>Phí Vận Chuyển</span><span><input class="text-right mdi-cursor-pointer" value="30,000" readonly />VNĐ</span>
+                        </div>
+                        <div class="d-flex justify-content-between information">
+                            <span>Tổng Cộng</span><span><input class="text-right mdi-cursor-pointer" value="@ViewBag.total1.ToString("#,##0")" readonly /> VNĐ</span>
+                        </div>
+
+                        <button class="btn btn-primary btn-block d-flex justify-content-between mt-3" type="submit">
+                            <span>@ViewBag.total1.ToString("#,##0") VNĐ</span><span>Hoàn Tất Đặt Hàng<i class="fa fa-long-arrow-right ml-1"></i></span>
+                        </button>
+
+
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+}
+

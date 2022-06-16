@@ -1,0 +1,154 @@
+﻿@model IEnumerable<WebMonAn.Models.FoodModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card corona-gradient-card">
+                <img src="~/images/Food/banner.jpg" style="height:200px; width:1440px" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <img class="rounded-circle mx-auto d-block" src="~/images/Food/1.jpg" style="height:220px; width:250px" />
+                    <h6 class="text-muted font-weight-normal text-center" style="font-size:30px">Pizza</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <img class="rounded-circle mx-auto d-block" src="~/images/Food/myy1.jpg" style="height: 220px; width:250px" />
+                    <h6 class="text-muted font-weight-normal text-center" style="font-size:30px">Mỳ ý</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <img class="rounded-circle mx-auto d-block" src="~/images/Food/combo.jpg" style="height:220px; width:250px" />
+                    <h6 class="text-muted font-weight-normal text-center" style="font-size:30px">Combo</h6>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <img class="rounded-circle mx-auto d-block" src="~/images/Food/pepsi.jpg" style="height:220px; width:250px" />
+                    <h6 class="text-muted font-weight-normal text-center" style="font-size:30px">Nước Ngọt</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card corona-gradient-card">
+                <div class="card-body py-0 px-0 px-sm-3">
+                    <div class="row align-items-center">
+                        <div class="col-4 col-sm-3 col-xl-2">
+                            <img src="assets/images/dashboard/Group126@2x.png" class="gradient-corona-img img-fluid" alt="">
+                        </div>
+                        <div class="col-5 col-sm-7 col-xl-8 p-0">
+                            <h4 class="mb-1 mb-sm-0">Giao Hàng Nhanh Chóng</h4>
+                            <p class="mb-0 font-weight-normal d-none d-sm-block"> Chỉ Với 30.000 Đ !</p>
+                        </div>
+                        <div class="col-3 col-sm-2 col-xl-2 pl-0 text-center">
+                            <span>
+                                <a href="" target="_blank" class="btn btn-outline-light btn-rounded get-started-btn">Đặt Hàng Ngay</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @{ if (ViewBag.UserName != null)
+        {
+            if (ViewBag.Role == 3)
+            {
+                <div class="row">
+                    <a asp-action="Create">
+                        <button class="btn btn-primary btn-block enter-btn">Thêm Sản Phẩm</button>
+                    </a>
+                </div>
+                <hr />
+            }
+        }
+    }
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-4 grid-margin">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-8 col-sm-12 col-xl-12 my-auto">
+                                <a asp-action="Details" asp-route-id="@item.MonAnId">
+                                    <div class="d-flex d-sm-block d-md-flex align-items-center">
+                                        <img class="rounded mx-auto d-block mdi-cursor-pointer" src="~/images/Food/@item.Hinh" style="height:200px; width: 700px" />
+                                    </div>
+                                    <h3 class="mb-0 text-center text-white">@Html.DisplayFor(modelItem => item.TenMonAn)</h3>
+                                    <h4 class="mb-0 text-center text-white">@item.GiaMonAn.ToString("#,##0") VNĐ</h4>
+                                    @{ if (ViewBag.UserName != null)
+                                        {
+                                            if (ViewBag.Role == 1)
+                                            {
+                                            }
+                                            else
+                                            {
+                                                <h4 class="mb-0 text-center text-white">@Html.DisplayFor(modelItem => item.Soluong)</h4>
+                                            }
+
+                                        }
+                                        <hr />
+                                        <a asp-controller="Cart" asp-action="buy" asp-route-id="@item.MonAnId">
+                                            <div class="text-center">
+                                                <button class="btn btn-primary btn-block enter-btn">Mua Ngay</button>
+                                            </div>
+                                        </a>
+                                    }
+                                    @{ if (ViewBag.UserName != null)
+                                        {
+                                            if (ViewBag.Role == 2)
+                                            {
+                                                <hr />
+                                                <a asp-action="Edit" asp-route-id="@item.MonAnId">
+                                                    <div class="text-center">
+                                                        <button class="btn btn-warning btn-block enter-btn">Sửa Món</button>
+                                                    </div>
+                                                </a>
+                                            }
+                                            if (ViewBag.Role == 3)
+                                            {
+                                                <hr />
+                                                <a asp-action="Edit" asp-route-id="@item.MonAnId">
+                                                    <div class="text-center">
+                                                        <button class="btn btn-warning btn-block enter-btn">Sửa Món</button>
+                                                    </div>
+                                                </a>
+                                                <a asp-action="Delete" asp-route-id="@item.MonAnId">
+                                                    <div class="text-center">
+                                                        <button class="btn btn-danger btn-block enter-btn">Xóa Món</button>
+                                                    </div>
+                                                </a>
+                                            }
+                                        }
+
+                                    }
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+

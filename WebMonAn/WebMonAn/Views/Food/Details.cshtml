@@ -1,0 +1,76 @@
+﻿@model WebMonAn.Models.FoodModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="wrapper row">
+    <div class="preview col-md-6">
+
+        <div class="preview-pic tab-content">
+            <div class="tab-pane active" id="pic-1"><img src="~/images/Food/@Model.Hinh" style="width:700px; height:500px" /></div>
+
+        </div>
+    </div>
+    <div class="details col-md-6">
+        <hr />
+        <div class="row">
+            <div class="col-12 grid-margin stretch-card">
+                <div class="card corona-gradient-card">
+                    <div class="card-body py-0 px-0 px-sm-3">
+                        <div class="row align-items-center">
+                            <div class="col-4 col-sm-3 col-xl-2">
+                                <img src="~/assets/images/dashboard/Group126@2x.png" class="gradient-corona-img img-fluid" alt="">
+                            </div>
+                            <div class="col-5 col-sm-7 col-xl-8 p-0">
+                                <h4 class="mb-1 mb-sm-0">Giao Hàng Nhanh Chóng</h4>
+                                <p class="mb-0 font-weight-normal d-none d-sm-block"> Chỉ Với 30.000 Đ !</p>
+                            </div>
+                            <div class="col-3 col-sm-2 col-xl-2 pl-0 text-center">
+                                <span>
+                                    <a href="" target="_blank" class="btn btn-outline-light btn-rounded get-started-btn">Đặt Hàng Ngay</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2 class="product-title">@Html.DisplayFor(model => model.TenMonAn)</h2>
+
+        <p class="product-description">@Html.DisplayFor(model => model.MoTa)</p>
+        <h3 class="price "><span>@Html.DisplayFor(model => model.GiaMonAn) VNĐ</span></h3>
+        <div class="col-sm-9">
+            <h4 class="sizes">
+                Sizes:
+                <select class="form-control">
+                    <option>Chọn Size Bánh</option>
+                    <option>S</option>
+                    <option>M</option>
+                    <option>L</option>
+                </select>
+            </h4>
+        </div>
+        <div class="col-sm-9">
+            <h4 class="sizes">
+                Đế:
+                <select class="form-control">
+                    <option>Chọn Size Đế</option>
+                    <option>Mỏng</option>
+                    <option>Vừa</option>
+                    <option>Dày</option>
+                </select>
+            </h4>
+        </div>
+            <div class="action">
+                <a asp-controller="Cart" asp-action="buy" asp-route-id="@Model.MonAnId">
+                    <button class="btn btn-default bg-primary btn-lg" type="button">Thêm Vào Giỏ Hàng</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+

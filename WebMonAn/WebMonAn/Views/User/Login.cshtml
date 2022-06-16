@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-8 grid-margin offset-md-2">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title text-center" style="font-size:30px">Đăng Nhập</h4>
+            <form class="forms-sample" asp-action="Login">
+                <div class="form-group">
+                    <label for="exampleInputUsername1">UserName</label>
+                    <input name="userName" type="text" class="form-control" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input name="passWord" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+                </div>
+                <div class="form-check form-check-flat form-check-success">
+                    <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input"> Ghi Nhớ
+                    </label>
+                </div>
+                @if (ViewBag.error != null)
+                {
+                    <span>@ViewBag.error</span>
+                }
+                <div class="text-center col-md-3">
+                    <button type="submit" class="btn btn-primary btn-block enter-btn">Đăng Nhập</button>
+                </div>
+                <p class="sign-up">Bạn chưa có tài khoản?<a asp-controller="User" asp-action="Create"> Đăng Ký</a></p>
+            </form>
+            
+        </div>
+    </div>
+</div>
+

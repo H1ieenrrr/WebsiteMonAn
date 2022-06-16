@@ -1,0 +1,61 @@
+﻿@model IEnumerable<WebMonAn.Models.CartDetailsModel>
+
+@{
+    ViewData["Title"] = "Index";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Chi Tiết Đơn Hàng</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MonAnId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenMonAn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hinh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GiaMonAn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Soluong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ThanhTien)
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MonAnId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenMonAn)
+            </td>
+            <td>
+                <img src="~/images/Food/@item.Hinh" style="height:100px; width:120px"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GiaMonAn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Soluong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThanhTien)
+            </td>
+
+        </tr>
+}
+    </tbody>
+</table>
